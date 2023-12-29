@@ -1,0 +1,89 @@
+1)
+Vamos construir a aplicação com um ambiente virtual
+para isso vamos usar um comando para gerar todo
+ambiente nescessario
+
+Criando um ambiente virtual com Python
+comando : python -m venv .venv
+
+2) 
+Ativando o Ambiente Virtual
+Antes de ativar temos que dar a autorização no termial
+Autorizaçao 
+Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
+
+Ativando projeto
+comando: .\.venv\Scripts\activate
+
+Desativando projeto
+comando: deactivate
+
+OBS: Para identificar que o ambiente esta realmente Ativando
+o marcado "(.venv)" estara visiavel no terminal
+no inicio do caminho da pasta
+
+Exemplo 
+"
+(.venv) PS C:\wamp64\www\php\Curso e Afins\CursoPython\teste python\Projeto Django 02>
+
+"
+
+Veja que o (.venv) vem antes do caminho da pasta que o terminal 
+esta aberto indicando que esta ativo.
+
+
+3) 
+com o ambiente virtual criado e Ativado vamos
+dar inicio a instalação do "DJANGO"
+
+comando: pip install django
+
+4)
+Com o DJANGO instalado vamos iniciar um novo projeto
+
+OBS: Entendendo o comando
+# django-admin startproject NomeDoProjeto .
+4.1: "django-admin", significa que estamos criando 
+o projeto com admin
+
+4.2: "startproject", significa que estamos
+startando um projeto novo
+
+4.3: "NomeDoProjeto", auto explicativo
+
+4.4: " . ", Esse ponto no final é para não ser criada
+uma pasta a mais, pois no nosso exemplo ja criamos essa pasta
+
+comando: django-admin startproject setup .
+
+5)Rodando o Server
+No nosso terminal na raiz apos criar o projeto "DJANGO"
+que demos o nome de 'setup' um arquivo foi gerado
+esse arquivo é o "manage.py" e com ele rodar o projeto
+
+OBS: O TERMINAL TEM QUE ESTAR NA RAIZ ONDE O ARQUIVO 
+"MANAGE.PY", SE ENCONTRA.
+
+Comando: python manage.py runserver
+
+Ao rodar esse codigo um Banco sera gerado para
+seja possivel guardar informações, por padrão
+o banco vem em "SQLite3" atualmente. 
+
+
+6) Criando APP DENTRO DO Projeto
+Depois de criar no projeto que demos o nome de "setup"
+ja temos um projeto montado, no entando junto ao projeto
+vamos criar uma nova pasta que ficara responsavel pela
+regras do projeto, ou as regras de negocio
+
+OBS: O TERMINAL TEM QUE ESTAR NA RAIZ ONDE O ARQUIVO 
+"MANAGE.PY", SE ENCONTRA.
+
+Exemplo
+"Comando: python manage.py startapp nomeDoApp"
+
+Comando: python manage.py startapp todos
+
+ENTÃO PODEMOS PERCEBER QUE OUTRA PASTA FOI CRIADA, 
+COM O NOME "TODOS", E QUE CONTEM ARQUIVOS DE CONFIGURAÇÕES 

@@ -1,0 +1,116 @@
+Criação e Configurações adicionais
+
+1) Vamos instalar uma biblioteca 'decouple'
+A biblioteca 'decouple', esse biblioteca vai 
+servir para trabalhar com o arquivo '.env' 
+que vamos criar posteriormente.
+
+Comando: pip install python-decouple
+
+
+2) Criação e configuração do arquivo '.env'
+
+Vamos criar 'NA RAIZ DO PROJETO', o nosso arquivo
+'.env', na raiz do projeto onde esta o arquivo
+'manage.py'.
+
+Uma das configurações que vamos criar vai ser uma Boa pratica, 
+quando criamos o projeto temos a pasta principal, e la temos 
+um arquivo chamado 'settings.py', esse arquivo como o nome 
+sugere contém muitas configurações do projeto, uma dessas 
+configurações é a 
+# SECURITY WARNING: keep the secret key used in production secret!
+SECRET_KEY = 'chave secreta'
+
+Acontece que como boa pratica essa chave não deve ser vista 
+porq terceiros para que outros não possam mudar ou traalhar com 
+ela, sendo assim vamos configruar essa chave secreta no nosso
+arquivo '.env' assim protegendo ela. 
+Vamos importar o 'decouple' no arquivo 'settings' e la vamos 
+configurar para o 'settings.py', pegar a secrect key do arquivo
+'.env', ao invés de deixar a 'SECRET_KEY' direto nela. 
+
+Como deve ficar o arquivo, lembrando que pode mudar 
+de acordo com cada projeto, e tudo agora no 'settings.py'
+que tiver 'config', significa que esta sendo importada
+do arquivo '.env'
+
+"""
+from pathlib import Path
+from decouple import config
+
+# Build paths inside the project like this: BASE_DIR / 'subdir'.
+BASE_DIR = Path(__file__).resolve().parent.parent
+
+
+# Quick-start development settings - unsuitable for production
+# See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
+
+# SECURITY WARNING: keep the secret key used in production secret!
+SECRET_KEY = config("SECRET_KEY")
+"""
+
+3) configuração do Banco
+Ainda dentro das configurações do 'settings.py' e do '.env'
+vamos ter que utilizar mais uma biblioteca para converter
+o 'padrao de conexão do banco para string'.
+Baixando biblioteca
+
+Comando: pip install dj-database-url
+
+Essa biblioteca vai servir para que no arquivo 'settings.py'
+consigamos configurar a classe
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
+}
+
+FICANDO DESSA FORMA
+
+# Database dj-database-url
+DATABASES = {
+    'default': config(
+        "DATABASE_URL", 
+        default=f'sqlite:///{BASE_DIR / "db.sqlite3"}',
+        cast=db_url,
+        )
+    }
+
+
+4) Instalando 'black'
+A biblioteca "black" vai servir para ajudar 
+na formatação do nosso codigo em python, 
+seguindo as regrasde pip8
+
+Comando: pip install black
+
+Depois de instalado para ser configurado
+o nosso codigo todo com o 'black', temos 
+que dar um comando na raiz do projeto.
+
+Exemplo 01
+Comando: black .
+
+e todo nosso codigo vai ser padronizado no 
+formatdo pip8.
+
+E Tambem temos a ver automatica que vai 
+monitorar nosso codigo em tempo real e 
+vai ajustar ele, e para isso vamos usar uma 
+configuração do proprio 'VSCODE'.
+
+Primeiro vamos o 'settings' do 'VSCODE',
+com o comando 'ctlr+swift+p'.
+Segundo passo vamos digitar no terminal o 
+comando 'settings', e entre as opções que vai
+aparecer, tem a opção 'Open Workspace Settings(JSON)'.
+Escolhendo essa opção vai abrir o 'settings.json' do 
+'VSCODE', onde vamos configruar o projeto.
+
+{
+    "python.formatting.provider": "black",
+    "python.formatting.autoUpdateOnSave": true
+  }
+  

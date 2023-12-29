@@ -1,0 +1,113 @@
+Criação e Configurações adicionais
+
+1) 
+Agora temos duas pastas uma pasta que 
+demos o nome de "setup" e uma pasta 
+de aplicação que demos o nome de "todos".
+
+Para que as duas pastas conversem entre si
+vamos adicionar o caminho da pasta "todos"
+dentro do arquivo 'settings.py', QUE 
+ESTA DENTRO DA PASTA "SETUP"
+
+Quando abrir o arquivo "settins.py" dentro da 
+pasta "SETUP", vamos procurar uma configuração,
+"INSTALLED_APPS".
+E vamos adicionar o caminho da pasta "todos"
+
+Linha nova: 'todos.apps.TodosConfig'
+todos = nome da pasta
+apps = nome do arquivo
+TodosConfig = nome da Classe
+
+Exemplo
+# Application definition
+
+INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'todos.apps.TodosConfig',  //Linha adicionada
+]
+
+2)Criando Pasta dos Template
+
+Dentro a pasta do App, que demos o nome de 'todos'
+Vamos criar um pasta que vamos chamar de 'templates',
+onde vamos construir o 'layout' das paginas.
+
+    2.1)Dentro da App 'todos', vamos criar uma pasta
+    que vamos dar o nome de 'templates'.
+
+    2.2)Agora para ficar mais organizados vamos
+    criar mais uma pasta chamada 'todos',DENTRO
+    DA PASTA 'TEMPLATES'.
+
+
+3) Trabalhando com os models
+
+Os models vão ser as classes que representaram
+as entidades que vamos trabalhar, e esses 'models'
+esta na pasta da aplicação "todos"
+
+Exemplo de uma classes
+
+from django.db import models
+
+# Create your models here.
+
+class Todo(models.Model):
+    title = models.CharField(max_length = 100, null = False, blank=False)
+    created_at = models.DateTimeField(auto_now_add = True, null=False, blank=False)
+    deadline = models.DateTimeField(null=False, blank=False)
+    finished_at = models.DateTimeField(null=False)
+
+
+
+4)Migrando as classes para o banco
+Agora que temos a nossa classe, ou classes no plural 
+depende de quantas estamos usando.
+
+Temos que transformar essas classes do 'MODELS' em tabelas
+no banco e para isso vamos usar um comando chamado
+
+OBS: O TERMINAL TEM QUE ESTAR NA RAIZ ONDE O ARQUIVO 
+"MANAGE.PY", SE ENCONTRA.
+Comando: 'python manage.py migrate'.
+
+OBS: AINDA ASSIM NOSSA TABELA NÃO FOI CRIADA ???
+BOM AGORA QUE RODAMOS O 'python manage.py migrate',
+rodamos de fato um migrate mas lembrece que a tabela
+que queremos criar esta na pasta 'todos' então temos que 
+agora rodar mais dois comandos para rodar as migrations
+da pasta 'todos'.
+
+Primeiro Comando
+comando: 'python manage.py makemigrations'
+Segundo Comando
+comando: 'python manage.py migrate'
+
+OBS: O TERMINAL TEM QUE ESTAR NA RAIZ ONDE O ARQUIVO 
+"MANAGE.PY", SE ENCONTRA.
+Comando: 'python manage.py migrate'.
+
+5) ALTERANDO UMA MIGRAÇÃO
+
+Depois de rodar um migração as configurações estarão 
+gravadas no banco, se por algum MOTIVO seja preciso 
+mudar o TYPE DE ALGUMA COLUNA.
+OBS:"
+Exemplo -> uma coluna esta como 'STRING', e agora
+essa coluna vai mudar como 'INT'."
+
+Vamos no nosso model fazer a mudança na coluna que queremos
+logo apos vamo rodar um comando python para fazer 
+um 'ALTER TABLE' EM UMA COLUNA.
+
+Primeiro Comando
+comando: 'python manage.py makemigrations'
+Segundo Comando
+comando: 'python manage.py migrate'

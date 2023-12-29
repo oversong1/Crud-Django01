@@ -1,0 +1,80 @@
+
+
+1_
+Vamos usar um biblioteca para renderização do Formulario
+
+Biblioteca django-crispy-forms
+
+comando: pip install crispy-bootstrap5
+
+OBS: Fora a instalação devemos ir na pasta principal do projeto, 
+e configurar o caminho da biblioteca na classe 'INSTALLED_APPS'
+
+Vamos na past principal no arquivo 'settings.py', e vamos até a 
+classe 'INSTALLED_APPS', onde ja configuramos o caminho
+do 'todo.apps'
+
+que esta assim 
+
+INSTALLED_APPS = [
+    "django.contrib.admin",
+    "django.contrib.auth",
+    "django.contrib.contenttypes",
+    "django.contrib.sessions",
+    "django.contrib.messages",
+    "django.contrib.staticfiles",
+    "todos.apps.TodosConfig",
+    #Adicionando o crispy
+    "crispy_forms",
+    "crispy_bootstrap5",
+]
+
+
+
+2_
+Organizando os 'INSTALLED_APPS', vamos organizar e separar
+app para ficar mais facil a organização.
+Atualemente esta dessa forma.
+
+#Forma padrão 
+INSTALLED_APPS = [
+    "django.contrib.admin",
+    "django.contrib.auth",
+    "django.contrib.contenttypes",
+    "django.contrib.sessions",
+    "django.contrib.messages",
+    "django.contrib.staticfiles",
+    "todos.apps.TodosConfig",
+    "crispy_forms",
+    "crispy_bootstrap5",
+]
+
+CRISPY_ALLOWED_TEMAPLATE_PACKS = "boostrap5"
+CRISPY_TEMAPLATE_PACK = "boostrap5"
+
+E vai ficar dessa forma 
+
+#Forma Organizacionl
+DJANGO_APPS = [
+    "django.contrib.admin",
+    "django.contrib.auth",
+    "django.contrib.contenttypes",
+    "django.contrib.sessions",
+    "django.contrib.messages",
+    "django.contrib.staticfiles",
+]
+
+THIRD_PARTY_APPS = [
+    "crispy_forms",
+    "crispy_bootstrap5",
+]
+
+MY_APPS = [
+    "todos.apps.TodosConfig",
+]
+
+INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + MY_APPS
+
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+
+CRISPY_TEMPLATE_PACK = "bootstrap5"
